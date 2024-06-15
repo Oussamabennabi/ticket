@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    /* Base Options: */
     "esModuleInterop": true,
     "skipLibCheck": true,
     "target": "es2022",
@@ -22,23 +23,21 @@
     "plugins": [{ "name": "next" }],
     "incremental": true,
 
-   
+    /* Path Aliases */
     "baseUrl": ".",
     "paths": {
-      "~/*": [
-        "./src/*"
-      ]
-    },
-    "forceConsistentCasingInFileNames": true
+      "~/*": ["./src/*"]
+    }
   },
   "include": [
+    ".eslintrc.cjs",
+    "postcss.config.cjs",
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".eslintcr.cjs",
+    "**/*.cjs",
+    "**/*.js",
     ".next/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

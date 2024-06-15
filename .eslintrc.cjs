@@ -1,10 +1,12 @@
 /** @type {import("eslint").Linter.Config} */
 const config = {
-  "parser": "@typescript-eslint/parser",
-  
+  // "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": true,
+
+  },
   "plugins": [
     "@typescript-eslint"
-    
   ],
   "extends": [
     "next/core-web-vitals",
@@ -15,7 +17,7 @@ const config = {
     "@typescript-eslint/array-type": "off",
     "@typescript-eslint/consistent-type-definitions": "off",
     "@typescript-eslint/consistent-type-imports": [
-      "off",
+      "warn",
       {
         "prefer": "type-imports",
         "fixStyle": "inline-type-imports"
@@ -29,7 +31,7 @@ const config = {
     ],
     "@typescript-eslint/require-await": "off",
     "@typescript-eslint/no-misused-promises": [
-      "off",
+      "error",
       {
         "checksVoidReturn": {
           "attributes": false
