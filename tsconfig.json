@@ -22,16 +22,10 @@
         "name": "next"
       }
     ],
-<<<<<<< HEAD
     "baseUrl": ".",
     "paths": {
       "~/*": [
         "./src/*"
-=======
-    "paths": {
-      "@/*": [
-        "./*"
->>>>>>> 34c1ff0e793bbac830327229d30bf525d1a53d0d
       ]
     },
     "forceConsistentCasingInFileNames": true
