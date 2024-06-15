@@ -51,7 +51,9 @@ const TicketCard = ({ ticket }: { ticket: Ticket }) => {
     <>
       <Dialog onOpenChange={(b) => setOpen(b)} open={open}>
         <DialogTrigger asChild>
-          <div
+          <a
+          onKeyDown={(e=>e.code==="Enter"&&setOpen(true))}
+          tabIndex={"0"}
             key={ticket.id}
             className="relative mb-2 flex w-full cursor-pointer flex-col  rounded-lg  p-2 transition-all bg-white/60 hover:bg-white/50"
           >
@@ -71,7 +73,7 @@ const TicketCard = ({ ticket }: { ticket: Ticket }) => {
             >
               {ticket.availability}
             </Badge>
-          </div>
+          </a>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <form onSubmit={handleSubmit}>

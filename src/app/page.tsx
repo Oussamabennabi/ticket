@@ -15,15 +15,15 @@ export default  function Home() {
     const data =  api.events.getAllEvents.useQuery()
   return (
     <>
-      <main className=" min-h-screen bg-neutral-100  p-4">
-        <div className="container flex items-center justify-between">
-          <h2 className="text-center text-5xl font-bold">Browse Events</h2>
+      <ScrollArea className=" min-h-screen bg-neutral-100  ">
+        <div className="container pt-4 flex items-center justify-between">
+          <h2 className="text-center sm:text-5xl text-2xl font-bold ">Events</h2>
           <Link href={"/checkout"}>
             <Button>Checkout</Button>
           </Link>
         </div>
         <hr />
-        <section className="container mt-10 flex h-[calc(100vh-200px)] w-full flex-col items-start justify-center gap-5 md:flex-row">
+        <section className="container px-2 mt-10 flex  w-full flex-col items-start justify-center gap-5 md:flex-row">
           <Accordion type="single" collapsible className="w-full">
                 {data.data?data.data.map(event=>(
             <AccordionItem value={event.id} key={event.id} >
@@ -39,7 +39,7 @@ export default  function Home() {
           </div>
               </AccordionTrigger>
               <AccordionContent>
-                <ScrollArea className="max-h-80 my-4">
+                <ScrollArea role="list" className="max-h-80 my-4">
                     {event.Ticket&&event.Ticket.length>=0&&event.Ticket.map(t=>(
                         <TicketCard key={t.id} ticket={t}/>
                     ))}
@@ -50,7 +50,7 @@ export default  function Home() {
                 )):""}
           </Accordion>
         </section>
-      </main>
+      </ScrollArea>
     </>
   );
 }
