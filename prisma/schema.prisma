@@ -1,0 +1,67 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "mongodb"
+    url      = env("DATABASE_URL")
+}
+
+model Event {
+    id          String   @id @default(auto()) @map("_id") @db.ObjectId
+    name        String
+    description String
+    date        DateTime
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+    location    String
+    Ticket      Ticket[]
+
+    @@index([name])
+}
+
+enum Availability {
+    AVAILABLE
+    SOLD_OUT
+    RESERVED
+    PENDING
+}
+
+model Ticket {
+    id            String        @id @default(auto()) @map("_id") @db.ObjectId
+    name          String
+    price         Int
+    availability  Availability  @default(AVAILABLE)
+    quantity      Int
+    event         Event         @relation(fields: [eventId], references: [id])
+    eventId       String        @db.ObjectId
+    orderId       String?
+    createdAt     DateTime      @default(now())
+    updatedAt     DateTime      @updatedAt
+    ticketOrderId String?
+    TicketOrder   TicketOrder[]
+
+    @@index([name])
+}
+
+model TicketOrder {
+    id       String  @id @default(auto()) @map("_id") @db.ObjectId
+    quantity Int
+    tiket    Ticket  @relation(fields: [ticketId], references: [id])
+    ticketId String  @db.ObjectId
+    Order    Order?  @relation(fields: [orderId], references: [id])
+    orderId  String? @db.ObjectId
+}
+
+model Order {
+    id          String        @id @default(auto()) @map("_id") @db.ObjectId
+    address     String
+    username    String
+    email       String
+    ticketOrder TicketOrder[]
+    createdAt   DateTime      @default(now())
+    updatedAt   DateTime      @updatedAt
+}
