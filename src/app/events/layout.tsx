@@ -1,4 +1,3 @@
-"use client"
 import { Button } from "~/components/ui/button";
 import EventsList from "../_components/events-list";
 import Link from "next/link";
